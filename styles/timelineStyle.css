@@ -1,0 +1,118 @@
+#timelineContainer {
+    margin-top: 30px;
+    margin-left: 15px;
+    line-height: 3;
+}
+
+#tl_2014{
+    margin-top: 10px;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+#tl_2015{
+    margin-top: 5px;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+#tl_2016{
+    margin-top: 5px;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+#tl_2017{
+    margin-top: 5px;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+#tl_2018{
+    margin-top: -183px;
+    margin-left: 105px;
+    font-weight: bold;
+}
+
+#tl_2019{
+    margin-top: 5px;
+    margin-left: 105px;
+    font-weight: bold;
+}
+
+#tl_2020{
+    margin-top: 5px;
+    margin-left: 105px;
+    font-weight: bold;
+}
+
+#tl_2021{
+    margin-top: 5px;
+    margin-left: 105px;
+    font-weight: bold;
+    color: var(--yellowFont);
+}
+
+.sliderHolder {
+    margin-top: 15px;
+    margin-left: 0px;
+    border: 1px solid white;
+    border-radius: 10px;
+    height: 20px;
+    width: 170px;
+
+
+
+    position: relative;
+    top: 57%;
+    left: 50%;
+
+
+}
+
+#sliderContainer{
+    position: relative;
+    top: -105%;
+}
+
+#sliderPlayer{
+    position: relative;
+    left: -30%;
+}
+
+.playButton{
+    cursor: pointer;
+    border: none;
+    font-family: ComfortaaFont;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 3px 8px;
+}
+
+
+#slider {
+    margin-top: 5px;
+    margin-left: 5px;
+
+    position: relative;
+    top: -50%;
+
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--yellowFont);
+    border: 2px solid var(--yellowFont);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#rangeValue {
+    margin-top: -30%;
+    margin-left: 40%;
+    font-size: smaller;
+    font-family: ComfortaaFont;
+    color: var(--fontColor);
+}

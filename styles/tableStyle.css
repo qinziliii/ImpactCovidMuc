@@ -1,0 +1,52 @@
+#mainTableHeader {
+    padding: 10px 20px 0 20px;
+    width: 100%;
+    border-bottom: 2px solid var(--fontColor);
+}
+
+#mainTable {
+    margin: 10px 20px 10px 20px;
+    font-size: 0.8em;
+    line-height: 1.4;
+    border-collapse: collapse;
+}
+
+#tableContainer {
+    background-color: var(--tableBackround);
+    border-radius: 10px;
+    color: var(--fontColor);
+    font-family: ComfortaaFont, sans-serif;
+    position: absolute;
+    top: 1%;
+    left: 74%;
+    width: 25%;
+}
+
+#tableHeaderValue {
+    text-align: right;
+}
+
+#tableHeaderDistrict {
+    text-align: left;
+}
+
+#mainTable > tr > td:nth-child(2) {
+    width: 70%;
+}
+
+#mainTable > tr > td:nth-child(1) {
+    width: 6%;
+}
+
+#mainTable > tr > td:nth-child(3) {
+    width: 20%;
+    text-align: right;
+}
+
+tr:nth-child(even) {
+    background-color: var(--background);
+}
+
+#mainTable > tr {
+    cursor: pointer;
+}

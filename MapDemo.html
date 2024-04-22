@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>The districts of Munich</title>
+    <script type="text/javascript" src="JavaScript/libraries/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="JavaScript/libraries/jquery.maphighlight.js"></script>
+
+    <script type="text/javascript" src="JavaScript/libraries/d3.js"></script>
+    <script type="text/javascript" src="JavaScript/libraries/d3_legend.js"></script>
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
+
+    <script src="JavaScript/mapInit.js"></script>
+    <script src="JavaScript/tableInit.js"></script>
+    <script src="JavaScript/csvURLs.js"></script>
+    <script src="JavaScript/colorMapDistricts.js"></script>
+    <script src="JavaScript/mapInteractivity.js"></script>
+    <script src="JavaScript/tableInteractivity.js"></script>
+    <script src="JavaScript/legendInit.js"></script>
+    <script src="JavaScript/legendInteractivity.js"></script>
+    <script src="JavaScript/lineChartInteractivity.js"></script>
+    <script src="JavaScript/timeline.js"></script>
+    <script src="JavaScript/lineChart.js"></script>
+    <script src="JavaScript/addLine.js"></script>
+    
+    <script>$(function () {
+        $('.map').maphilight();
+    });</script>
+    <link rel="stylesheet" type="text/css" href="styles/mapStyle.css">
+    <link rel="stylesheet" type="text/css" href="styles/lineChartStyle.css">
+    <link rel="stylesheet" type="text/css" href="styles/generalStyle.css">
+    <link rel="stylesheet" type="text/css" href="styles/tableStyle.css">
+    <link rel="stylesheet" type="text/css" href="styles/legendStyle.css">
+    <link rel="stylesheet" type="text/css" href="styles/pop-upWindowStyle.css">
+    <link rel="stylesheet" type="text/css" href="styles/timelineStyle.css">
+</head>
+<body>
+<div id="mainWindow">
+    <div id="selectionContainer">
+        <div id="selectionContainerContent">
+            <div class="valueTab clickedValueTab">Open Accommodations</div>
+            <div class="line_1"></div>
+            <div class="h_line"></div>
+            <div class="valueTab">Beds Offered</div>
+            <div class="line_1"></div>
+            <div class="h_line"></div>
+            <div class="valueTab">Arrivals</div>
+            <div class="line_1"></div>
+            <div class="h_line"></div>
+            <div class="valueTab">Overnight Stays</div>
+            <div class="line_1"></div>
+            <div class="h_line"></div>
+            <div class="valueTab">Average Occupancy Rate</div>
+            <div class="line_1"></div>
+            <div class="h_line"></div>
+            <div class="valueTab">Average Beds Offered</div>
+            <div class="line_1"></div>
+            <div class="h_line"></div>
+            <div class="valueTab">Average Duration of Stay</div>
+        </div>
+
+        <div id="timelineContainer">
+            <div id="tl_2014" class="yearBtn" onclick="changeValue(2014)">2014</div>
+            <div id="tl_2015" class="yearBtn" onclick="changeValue(2015)">2015</div>
+            <div id="tl_2016" class="yearBtn" onclick="changeValue(2016)">2016</div>
+            <div id="tl_2017" class="yearBtn" onclick="changeValue(2017)">2017</div>
+            <div id="tl_2018" class="yearBtn" onclick="changeValue(2018)">2018</div>
+            <div id="tl_2019" class="yearBtn" onclick="changeValue(2019)">2019</div>
+            <div id="tl_2020" class="yearBtn" onclick="changeValue(2020)">2020</div>
+            <div id="tl_2021" class="yearBtn" onclick="changeValue(2021)">2021</div>
+
+        </div>
+    </div>
+
+    <div id="mapContainer">
+        <div id="mapContainerPos">
+            <div id="mapContent">
+                <img src="Ressources/MunichMap.png" width="1000" height="757" class="map" usemap="#features"
+                     alt="Map of districts of Munich">
+                <map name="features" id="map"></map>
+            </div>
+        </div>
+        <svg id="legend-svg"></svg>
+        <div id="Pop-Up">
+            <div id="buttonHolder">
+                <button class="btn" data-modal-target="#modal">?</button>
+            </div>
+            <div class="modal" id="modal">
+                <div class="modal-header">
+                    <div class="modal-title" >   Additional Information  </div>
+                    <button data-close-button class="close-button">&times;</button>
+                </div>
+                <div class="modal-body">
+                    On the far left you are able to choose between different categories: </br>
+                    </br>
+                    <b> Open Accommodations </b> - establishments that are, according to their purpose, designed to accommodate at least ten guests at the same time(§ 3 BeherbStatG). Establishments with ten or more beds.
+                    </br>
+                    </br>
+                    <b>Beds offered </b> - the amount of beds offered by all accommodation establishments in the districts </br>
+                    </br>
+                    <b> Arrivals </b>- guests who book at least one overnight stay are recorded.  </br>
+                    </br>
+                    <b> Overnight Stays </b> - the amount of nights spent in all accommodation establishments </br>
+                    </br>
+                    <b> Average Occupancy Rate </b> - the occupancy rate of the beds offered is the arithmetical value expressing the percentage of the overnight accommodation facilities (bed days) in the reporting period (Overnight stays x 354 / bed days). </br>
+                    </br>
+                    <b> Duration of Stay </b>  - the value calculated as the quotient of overnight stays and arrivals indicates the average duration of guests staying at the accommodation facility. </br>
+                </div>
+            </div>
+        </div>
+
+        <div class="sliderHolder">
+            <div id="sliderPlayer">
+                <button class="playButton" >Play</button>
+            </div>
+            <div class="slider" id="sliderContainer">
+                <input autocomplete="off" type="range" id="slider" min="2014" max="2021" value="2021" oninput="rangeValue.innerText = this.value" onchange="slideYear(this.value)">
+                <p id="rangeValue">2021</p>
+            </div>
+        </div>
+        <div id="overlay"></div>
+
+    </div>
+    <div id="tableContainer">
+        <table id="mainTableHeader">
+            <tr>
+                <th id="tableHeaderId"></th>
+                <th id="tableHeaderDistrict">District</th>
+                <th id="tableHeaderValue"></th>
+            </tr>
+        </table>
+        <div class="line_4"></div>
+        <div class="h_line"></div>
+        <table id="mainTable">
+        </table>
+    </div>
+
+</div>
+<div id="lineChartSVG">
+    <div id="chartHeader">Values of the selected district(s) over the years</div>
+    <div id="lineChartSVG2"></div>
+</div>
+</body>
+</html>
+
+<script>
+    let colorArray = ["0083fe", "d9d9d9", "828282", "424242", "2b2b2b"] //4 gray colors to color the map
+    let sortedValues = []; //array for sorted values of district to calculate quartiles
+    let min;
+    let max;
+    let quartile05;
+    let quartile025;
+    let quartile075;
+    let csvDataDistricts; //csv of districts
+    let csvDataMunich; //csv of just munich -> concat with csvDataDistricts for complete dataset
+    let initialized = false;
+    let value = "Open Accommodations"
+    let csvUrl = districts2021URL; //TODO changes with the selected year
+    let selectedTab;
+    let firstTimeLoad = true;
+    let greyFontColor = getComputedStyle(document.documentElement).getPropertyValue('--fontColor');
+    let yellowColor = getComputedStyle(document.documentElement).getPropertyValue('--yellowFont');
+    let greyNoHashColor = greyFontColor.replace("#", "");
+    let yellowNoHashColor =yellowColor.replace("#", "");
+
+    mapInit();
+    makeLine();
+    
+    /*
+    Highlight district table in color and make it bold
+    */
+    function highlightTable(number, color, fontWeight) {
+        number = number + 1;
+        $("#mainTable tr:nth-child(" + number + ")").css({"color": color, "font-weight": fontWeight});
+    }
+
+
+    //When clicking on the categories, change the coloring and the table
+    $(".valueTab").click(function () {
+        undoHighlightMap();
+        value = $(this).text();
+        setQuartiles();
+        changeTableValues();
+        deHighlightOtherTab();
+        highlightSelection($(this));
+        $("#lineChartSVG2").children().remove();
+        checkCategory(value);
+        makeLine();
+        selectedData = [];
+    });
+
+    function deHighlightOtherTab() {
+        $(".valueTab").removeClass("clickedValueTab")
+
+    }
+
+    function highlightSelection(valueTab) {
+        selectedTab = valueTab;
+        valueTab.addClass("clickedValueTab");
+    }
+
+
+    //https://stackoverflow.com/questions/38837610/javascript-how-to-round-number-to-2-non-zero-decimals
+    function oneDecimal(n) {
+        let log10 = n ? Math.floor(Math.log10(n)) : 0,
+            div = log10 < 0 ? Math.pow(10, 1 - log10) : 10;
+        return Math.round(n * div) / div;
+    }
+
+    //https://jsfiddle.net/y6zdmaeq/2/
+    function commaSeparateNumber(val) {
+        while (/(\d+)(\d{3})/.test(val.toString())) {
+            val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+        }
+        return val;
+    }
+
+    /*Pop-Up Window ********/
+
+    const openModalButtons = document.querySelectorAll('[data-modal-target]');
+    const closeModalButtons = document.querySelectorAll('[data-close-button]');
+    const overlay = document.getElementById('overlay');
+
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = document.querySelector(button.dataset.modalTarget);
+            openModal(modal);
+
+        })
+    })
+
+    overlay.addEventListener('click', () => {
+        const modals = document.querySelectorAll('.modal.active');
+        modals.forEach(modal => {
+            closeModal(modal);
+        })
+    })
+
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal')
+            closeModal(modal);
+
+        })
+    })
+
+    function openModal(modal) {
+        if (modal == null) return
+        modal.classList.add('active');
+        overlay.classList.add('active');
+    }
+
+    function closeModal(modal) {
+        if (modal == null) return
+        modal.classList.remove('active');
+        overlay.classList.remove('active');
+    }
+
+    /* End Pop-Up Window *********/
+
+    const sliderButton = document.getElementById('sliderPlayer');
+
+    sliderButton.addEventListener('click', () => {
+        console.log("click");
+        sliderAnimation();
+    })
+
+</script>

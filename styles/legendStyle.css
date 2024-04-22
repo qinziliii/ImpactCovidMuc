@@ -1,0 +1,34 @@
+.swatch {
+    outline: thin solid black;
+    cursor: pointer;
+}
+
+.label {
+    cursor: pointer;
+}
+
+.legendQuant {
+    fill: var(--fontColor);
+}
+
+#cellNoInfo {
+    fill: var(--fontColor) !important;
+    cursor: pointer;
+}
+
+.legendTitle {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#legend-svg {
+    background-color: var(--tableBackround);
+    border-radius: 10px;
+    position: relative;
+    top: 3%;
+    left: 3%;
+    width: 20%;
+    height: 30%;
+    min-height: 170px;
+}

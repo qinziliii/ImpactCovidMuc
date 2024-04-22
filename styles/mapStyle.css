@@ -1,0 +1,40 @@
+#mapContent {
+    transform: scale(0.5);
+}
+
+#mapContainerPos{
+    position: fixed;
+    top: -13%;
+    right: 25%;
+}
+
+#mapContainer {
+    background-color: var(--mapBackground);
+    border-radius: 0 10px 10px 0;
+    position: absolute;
+    top: 1%;
+    left: 13%;
+    width: 60%;
+    height: 60%;
+}
+
+.mapDistrictHelper {
+    border-radius: 5px;
+    font-family: ComfortaaFont, sans-serif;
+    font-size: 18px;
+    padding: 5px 7px 2px 7px;
+    border-color: var(--mapBackground);
+    color: var(--mapBackground);
+    font-weight: bolder;
+    text-align: center;
+    border-width: 1px;
+    background-color: var(--fontColor);
+    border-style: solid;
+    position: fixed;
+    z-index: 1000;
+    white-space: nowrap;
+    pointer-events: none;
+    vertical-align: middle;
+}
+
+

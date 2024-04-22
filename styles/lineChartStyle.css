@@ -1,0 +1,58 @@
+#lineChartSVG{
+    position: absolute;
+    bottom: 1%;
+    left: 13%;
+    height: 37%;
+    width: 60%;
+    background-color: var(--tableBackround);
+    border-radius: 10px 10px 10px 10px;
+}
+
+circle {
+    fill: var(--yellowFont);
+}
+
+.line_path {
+    fill: none;
+    stroke: var(--yellowFont);
+    stroke-width: 0.8;
+    stroke-linejoin: round;
+}
+
+circle:hover {
+    fill: var(--fontColor);
+    stroke: black;
+    stroke-width: 2px;
+
+}
+
+.tick text {
+    font-size: 14px;
+    fill: var(--fontColor);
+}
+
+.tick line {
+    stroke: var(--fontColor);
+}
+
+.axis_label {
+    font-size: 14px;
+    fill: var(--fontColor);
+}
+
+.chart_title {
+    font-size: 14px;
+    fill: var(--fontColor);
+}
+
+#actualLineChartSVG {
+    padding: 15px;
+    position: relative;
+    bottom: 1%;
+    right: 1%;
+}
+
+#lineChartG{
+    width: 1%;
+    height: 1%;
+}

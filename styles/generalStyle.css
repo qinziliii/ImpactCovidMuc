@@ -1,0 +1,96 @@
+@font-face {
+    font-family: "ComfortaaFont";
+    src: url('comfortaFont/Comfortaa-Medium.ttf') format("truetype");
+}
+
+:root {
+    --background: #2B2B2B;
+    --mapBackground: #262626;
+    --tableBackround: #424242;
+    --fontColor: #DADADA;
+    --yellowFont: #fedc00;
+}
+
+#mainWindow {
+    display: grid;
+    grid-template-columns: 0.3fr 1fr 5fr 0.1fr 2.3fr 0.1fr;
+    grid-template-rows: 0.1fr 2fr 2fr;
+}
+
+body {
+    display: flex;
+    background-color: var(--background);
+    overflow-y: scroll;
+}
+
+.valueTab {
+    color: var(--fontColor);
+    font-family: ComfortaaFont, sans-serif;
+}
+
+
+#selectionContainer {
+    background-color: var(--tableBackround);
+    border-radius: 10px 0 0 10px;
+    color: var(--fontColor);
+    font-family: ComfortaaFont, sans-serif;
+    font-size: 14px;
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    width: 11%;
+}
+
+
+#selectionContainerContent {
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    padding: 0 10px 0 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.line_1 {
+    width: 80%;
+    height: 1px;
+    margin-left: 15px;
+    background: var(--fontColor);
+
+}
+
+text {
+    font-family: ComfortaaFont, sans-serif;
+}
+
+.valueTab {
+    padding: 5% 5% 5% 5%;
+}
+
+.clickedValueTab {
+    color: var(--tableBackround);
+    background-color: var(--yellowFont);
+    border-radius: 10px 0 0 10px;
+}
+
+.yearBtn {
+    cursor: pointer;
+}
+
+#slider{
+    -webkit-appearance: none;
+    background-color: var(--yellowFont);
+    border-radius: 5px;
+    height: 10px;
+}
+
+#chartHeader {
+    font-family: ComfortaaFont, sans-serif;
+    color: var(--fontColor);
+    position: relative;
+    top: 2%;
+    left: 2%;
+}
+
